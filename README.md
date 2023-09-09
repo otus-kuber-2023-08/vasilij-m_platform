@@ -12,7 +12,7 @@ vasilij-m Platform repository
     Разберитесь почему все pod в namespace `kube-system` восстановились после удаления.
 
   **Ответ:**  
-    В нэймспейсе `kube-system` (minikube) запускаются следующие поды:
+    В нэймспейсе `kube-system` (minikube) запускаются следующие поды:  
     - coredns  
     - etcd  
     - kube-apiserver  
