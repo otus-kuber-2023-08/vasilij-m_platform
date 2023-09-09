@@ -1,7 +1,7 @@
 # vasilij-m_platform
 vasilij-m Platform repository
 
-## 1.2. Знакомство с Kubernetes, основные понятия и архитектура
+## 1. Знакомство с Kubernetes, основные понятия и архитектура
 
 <details>
   <summary><b>Выполнение заданий</b></summary>
