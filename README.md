@@ -13,14 +13,14 @@ vasilij-m Platform repository
 
   **Ответ:**  
     В нэймспейсе `kube-system` (minikube) запускаются следующие поды:
-    - coredns
-    - etcd
-    - kube-apiserver
-    - kube-controller-manager
-    - kube-proxy
-    - kube-scheduler
-    - registry
-    - registry-proxy
+    - coredns  
+    - etcd  
+    - kube-apiserver  
+    - kube-controller-manager  
+    - kube-proxy  
+    - kube-scheduler  
+    - registry  
+    - registry-proxy  
 
   Поды `etcd`, `kube-apiserver`, `kube-controller-manager` и `kube-scheduler` являются static подами. Такие поды управляются напрямую `kubelet`'ом без участия компонентов Control Plane. `kubelet` следит за созданием/обновлением манифестов в директории `/etc/kubernetes/manifests` (по дефолту) и создает описанные в них поды без обращения к `kube-apiserver`. Собственно сам `kube-apiserver` и другие компоненты Control Plane создаются `kubelet`'ом при бутстрапе кластера (на самом деле это зависит от способа развертывания кластера, и Control Plane компоненты могут быть подняты как systemd сервисы, тогда манифесты для запуска их в виде static подов не нужны, как и сам `kubelet` на мастер-нодах).  
   При удалении этих подов из нэймспейса `kube-system` kubelet заново их поднимает, опираясь на манифесты в директории `/etc/kubernetes/manifests`.
