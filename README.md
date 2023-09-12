@@ -52,3 +52,4 @@ vasilij-m Platform repository
   2. Создан манифест `kubernetes-intro/frontend-pod-healthy.yaml`, в котором для контейнера `frontend` указаны необходимые переменные окружения.
 
 </details>
+
