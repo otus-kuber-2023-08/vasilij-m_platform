@@ -172,7 +172,7 @@ vasilij-m Platform repository
   2. Service Account `carol` описан в манифесте `./kubernetes-security/task02/02-sa-carol.yaml`.
   3. Чтобы все сервисные аккаунты в Namespace `prometheus` имели возможность делать `get`, `list`, `watch` в отношении Pods всего кластера, нужно применить следующие манифесты:
      1.  `./kubernetes-security/task02/03-clusterrole-pods-viewer.yaml` - описывает ClusterRole `pods-viewer`
-     2.  `./kubernetes-security/task02/04-rolebinding-pods-viewer.yaml` - описывает RoleBinding `serviceaccounts-pods-viewer` для Namespace `prometheus` (привязывает сервисные аккаунты в Namespace `prometheus` к ClusterRole `pods-viewer`).
+     2.  `./kubernetes-security/task02/04-clusterrolebinding-pods-viewer.yaml` - описывает ClusterRoleBinding `serviceaccounts-pods-viewer` (привязывает сервисные аккаунты из Namespace `prometheus` к ClusterRole `pods-viewer`).
 
   ### Задание 3
 ---
