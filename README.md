@@ -747,7 +747,7 @@ vasilij-m Platform repository
         $ helm repo add myrepo https://chartmuseum.prod.vasilijm.ru
         "myrepo" has been added to your repositories
         ```
-     3. Запушим в репозиторий `myrepo` чарт `ingress-nginx`, который сохранен локально как директория соответсвтующей для данного чарта структурой:
+     3. Запушим в репозиторий `myrepo` чарт `ingress-nginx`, который сохранен локально как директория с соответствующей для данного чарта структурой:
         ```bash
         $ helm cm-push ../misc/helm-charts/ingress-nginx/ myrepo        
         Pushing ingress-nginx-4.8.2.tgz to myrepo...
@@ -1052,7 +1052,7 @@ vasilij-m Platform repository
       ```bash
       sops -e -i --pgp B0FA8EFF80BB979847564414DFD56B4AFBDB33CB ./kubernetes-templating/frontend/secrets.yaml
       ```
-  5. Содержимое файла изменилось, значение ключа `visibleKey` теперь зашифровано, плюс появилась дополнительная мета. Для просмотра зашифврованного значения можно воспользоваться одной из следующих команд:
+  5. Содержимое файла изменилось, значение ключа `visibleKey` теперь зашифровано, плюс появилась дополнительная мета. Для просмотра зашифрованного значения можно воспользоваться одной из следующих команд:
       ```bash
       helm secrets decrypt ./kubernetes-templating/frontend/secrets.yaml
       ``` 
@@ -1125,7 +1125,7 @@ vasilij-m Platform repository
       Pushed: harbor.prod.vasilijm.ru/helm/hipster-shop:0.1.0
       Digest: sha256:d536e83df55545dc933d9b9d399cdd4f0fdc669a4d3d9ccd0e548468e61e3ede
       ```
-  5. Для загрузки чартов в Harbor написан скрипт `./kubernetes-templating/repo.sh`, например, для загрузка чартов frontend и hipster-shop выглядит следующим образом:
+  5. Для загрузки чартов в Harbor написан скрипт `./kubernetes-templating/repo.sh`, например, загрузка чартов `frontend` и `hipster-shop` выглядит следующим образом:
       ```bash
       $ ./kubernetes-templating/repo.sh frontend hipster-shop
       WARNING: Using --password via the CLI is insecure. Use --password-stdin.
@@ -1162,41 +1162,41 @@ vasilij-m Platform repository
       client-go version: v0.0.0-master+$Format:%H$
       ```
   2. Шаблон для генерации манифестов описан в файле `./kubernetes-templating/kubecfg/services.jsonnet`. Проверим, что манифесты генерируются корректно и применим их в кластер:
-  ```bash
-  $ # Проверим, что манифесты генерируются корректно
-  $ kubecfg show kubernetes-templating/kubecfg/services.jsonnet
-  $ # Если ошибок нет, то получим в консоли сгенерированные манифесты
-  $ # Применим манифесты в кластер
-  $ kubecfg update kubernetes-templating/kubecfg/services.jsonnet --namespace hipster-shop
-  INFO  Validating deployments paymentservice
-  INFO  validate object "apps/v1, Kind=Deployment"
-  INFO  Validating services paymentservice
-  INFO  validate object "/v1, Kind=Service"
-  INFO  Validating deployments shippingservice
-  INFO  validate object "apps/v1, Kind=Deployment"
-  INFO  Validating services shippingservice
-  INFO  validate object "/v1, Kind=Service"
-  INFO  Fetching schemas for 4 resources
-  INFO  Creating deployments paymentservice
-  INFO  Creating deployments shippingservice
-  ```
-  3. Проверим, что нудные сервисы поднялись (в нашем случае это поды `paymentservice-57f6bc9cfb-8w9hr` и `shippingservice-8f75d45b8-79zjg`):
-    ```bash
-    $ kubectl get po -n hipster-shop                                 
-    NAME                                     READY   STATUS    RESTARTS   AGE
-    adservice-7d857689bd-kfbj2               1/1     Running   0          9h
-    cartservice-56578677d-dflcm              1/1     Running   0          9h
-    checkoutservice-84cb944764-jv68d         1/1     Running   0          9h
-    currencyservice-76f9b766b4-8tgrq         1/1     Running   0          9h
-    emailservice-767cd45966-flhwm            1/1     Running   0          9h
-    frontend-8475b5657d-jzk6b                1/1     Running   0          9h
-    loadgenerator-6d79d6ff6f-m2ff4           1/1     Running   0          9h
-    paymentservice-57f6bc9cfb-8w9hr          1/1     Running   0          4m56s
-    productcatalogservice-5b9df8d49b-fjsgv   1/1     Running   0          9h
-    recommendationservice-6ffb84bb94-9cpmk   1/1     Running   0          9h
-    redis-cart-master-0                      1/1     Running   0          9h
-    shippingservice-8f75d45b8-79zjg          1/1     Running   0          4m56s  
-    ```
+      ```bash
+      $ # Проверим, что манифесты генерируются корректно
+      $ kubecfg show kubernetes-templating/kubecfg/services.jsonnet
+      $ # Если ошибок нет, то получим в консоли сгенерированные манифесты
+      $ # Применим манифесты в кластер
+      $ kubecfg update kubernetes-templating/kubecfg/services.jsonnet --namespace hipster-shop
+      INFO  Validating deployments paymentservice
+      INFO  validate object "apps/v1, Kind=Deployment"
+      INFO  Validating services paymentservice
+      INFO  validate object "/v1, Kind=Service"
+      INFO  Validating deployments shippingservice
+      INFO  validate object "apps/v1, Kind=Deployment"
+      INFO  Validating services shippingservice
+      INFO  validate object "/v1, Kind=Service"
+      INFO  Fetching schemas for 4 resources
+      INFO  Creating deployments paymentservice
+      INFO  Creating deployments shippingservice
+      ```
+  3. Проверим, что нужные сервисы поднялись (в нашем случае это поды `paymentservice-57f6bc9cfb-8w9hr` и `shippingservice-8f75d45b8-79zjg`):
+      ```bash
+      $ kubectl get po -n hipster-shop                                 
+      NAME                                     READY   STATUS    RESTARTS   AGE
+      adservice-7d857689bd-kfbj2               1/1     Running   0          9h
+      cartservice-56578677d-dflcm              1/1     Running   0          9h
+      checkoutservice-84cb944764-jv68d         1/1     Running   0          9h
+      currencyservice-76f9b766b4-8tgrq         1/1     Running   0          9h
+      emailservice-767cd45966-flhwm            1/1     Running   0          9h
+      frontend-8475b5657d-jzk6b                1/1     Running   0          9h
+      loadgenerator-6d79d6ff6f-m2ff4           1/1     Running   0          9h
+      paymentservice-57f6bc9cfb-8w9hr          1/1     Running   0          4m56s
+      productcatalogservice-5b9df8d49b-fjsgv   1/1     Running   0          9h
+      recommendationservice-6ffb84bb94-9cpmk   1/1     Running   0          9h
+      redis-cart-master-0                      1/1     Running   0          9h
+      shippingservice-8f75d45b8-79zjg          1/1     Running   0          4m56s  
+      ```
 
   ### Задание 12. Kustomize | Самостоятельное задание
 ---
@@ -1204,25 +1204,25 @@ vasilij-m Platform repository
 
   1. Для выполнения задания "отпилим" из `./kubernetes-templating/hipster-shop/templates/all-hipster-shop.yaml` сервис `currencyservice`.
   2. Манифесты для создание базовых ресурсов (`deployment` и `service` в нэймспейсе `hipster-shop`) описаны в директории `./kubernetes-templating/kustomize/base`. Для их применения в кластере выполним следующую команду:
-    ```bash
-    $ kubectl apply -k kubernetes-templating/kustomize/base
-    service/currencyservice created
-    deployment.apps/currencyservice created
-    ```
+      ```bash
+      $ kubectl apply -k kubernetes-templating/kustomize/base
+      service/currencyservice created
+      deployment.apps/currencyservice created
+      ```
   3. Перед применением манифестов в `prod` окружение (директория `./kubernetes-templating/kustomize/overlays/prod`) мы можем посмотреть, какие именно манифесты будут сгенерированы, выполнив:
-    ```bash
-    kubectl kustomize kubernetes-templating/kustomize/overlays/prod
-    ```
+      ```bash
+      kubectl kustomize kubernetes-templating/kustomize/overlays/prod
+      ```
   4. Установка на `prod` окружение (`hipster-shop-prod` нэймспейс) будет выглядеть следующим образом:
-    ```bash
-    $ kubectl apply -k kubernetes-templating/kustomize/overlays/prod
-    namespace/hipster-shop-prod created
-    service/prod-currencyservice created
-    deployment.apps/prod-currencyservice created
-    $ kubectl get pods -n hipster-shop-prod                         
-    NAME                                    READY   STATUS    RESTARTS   AGE
-    prod-currencyservice-6895bf9fd7-lhtw8   1/1     Running   0          24s
-    ```
+      ```bash
+      $ kubectl apply -k kubernetes-templating/kustomize/overlays/prod
+      namespace/hipster-shop-prod created
+      service/prod-currencyservice created
+      deployment.apps/prod-currencyservice created
+      $ kubectl get pods -n hipster-shop-prod                         
+      NAME                                    READY   STATUS    RESTARTS   AGE
+      prod-currencyservice-6895bf9fd7-lhtw8   1/1     Running   0          24s
+      ```
 
 
 </details>
